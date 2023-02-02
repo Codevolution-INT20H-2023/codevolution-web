@@ -1,6 +1,9 @@
-import { FC, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Send } from '@mui/icons-material';
+import { isAxiosError } from 'axios';
 import { Formik } from 'formik';
+import { useRouter } from 'next/router';
 
 import Button from '@/components/common/button';
 import {
@@ -8,17 +11,40 @@ import {
   FormField,
   FormWrapper,
 } from '@/components/common/form';
+import { showToast } from '@/redux/reducers/toast.reducer';
+import { AuthService } from '@/services';
+import { LoginForm } from '@/types/auth';
+import { LOCAL_STORAGE_KEYS } from '@/types/common';
+import { TOAST_STATUS } from '@/types/redux/toast';
 
 import { initialValues } from './constants';
 import { validationSchema } from './utils';
 
 const LoginPage: FC = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const onSubmit = async () => {
-    setIsLoading(true);
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setIsLoading(false);
-  };
+  const dispatch = useDispatch();
+  const { push } = useRouter();
+
+  const onSubmit = useCallback(
+    async (data: LoginForm) => {
+      try {
+        setIsLoading(true);
+        const { access_token, refresh_token } = await AuthService.login(data);
+        localStorage.setItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN, access_token);
+        localStorage.setItem(LOCAL_STORAGE_KEYS.REFRESH_TOKEN, refresh_token);
+        await push('/');
+      } catch (e) {
+        if (isAxiosError(e)) {
+          dispatch(
+            showToast({ status: TOAST_STATUS.ERROR, message: e.message }),
+          );
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [dispatch, push],
+  );
 
   return (
     <Formik

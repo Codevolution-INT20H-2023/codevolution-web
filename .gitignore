@@ -8,6 +8,9 @@
 #IDE
 /.idea
 
+#env
+.env
+
 # testing
 /coverage
 

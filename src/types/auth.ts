@@ -8,3 +8,10 @@ export interface SignupForm {
   password: string;
   confirmPassword: string;
 }
+
+export type SignupPayload = Omit<SignupForm, 'confirmPassword'>;
+
+export interface AuthResponse {
+  access_token: string;
+  refresh_token: string;
+}

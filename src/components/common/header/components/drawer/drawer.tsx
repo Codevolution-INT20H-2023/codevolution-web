@@ -12,6 +12,8 @@ import {
   SwipeableDrawer,
 } from '@mui/material';
 
+import { LOCAL_STORAGE_KEYS } from '@/types/common';
+
 import * as Styled from '../../header.styled';
 
 const drawerWidth = 320;
@@ -21,6 +23,11 @@ const Drawer: FC = () => {
 
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN);
+    localStorage.removeItem(LOCAL_STORAGE_KEYS.REFRESH_TOKEN);
+  };
 
   return (
     <div>
@@ -51,6 +58,7 @@ const Drawer: FC = () => {
                 startIcon={<LogoutIcon />}
                 LinkComponent={Styled.NavLink}
                 href="/login"
+                onClick={handleLogout}
               >
                 log out
               </Button>
