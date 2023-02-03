@@ -18,7 +18,7 @@ import { LOCAL_STORAGE_KEYS } from '@/types/common';
 import { TOAST_STATUS } from '@/types/redux/toast';
 
 import { initialValues } from './constants';
-import { validationSchema } from './utils';
+import { validationSchema } from './validation';
 
 const LoginPage: FC = () => {
   const [isLoading, setIsLoading] = useState(false);

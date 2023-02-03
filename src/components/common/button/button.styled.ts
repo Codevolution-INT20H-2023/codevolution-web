@@ -9,6 +9,6 @@ export const Loader = styled(CircularProgress)`
   position: absolute;
   left: 50%;
   top: 50%;
-  margin-top: -12px;
-  margin-left: -12px;
+  margin-top: -0.75rem;
+  margin-left: -0.75rem;
 `;

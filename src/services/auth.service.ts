@@ -1,7 +1,7 @@
-import { AuthResponse, LoginForm, SignupPayload } from '@/types/auth';
+import { AuthResponse, LoginPayload, SignupPayload } from '@/types/auth';
 
 class Auth {
-  async login(data: LoginForm): Promise<AuthResponse> {
+  async login(data: LoginPayload): Promise<AuthResponse> {
     await new Promise(resolve => setTimeout(resolve, 2000));
     return {
       access_token: `${data.email}|${data.password}`,

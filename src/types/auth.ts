@@ -9,6 +9,7 @@ export interface SignupForm {
   confirmPassword: string;
 }
 
+export type LoginPayload = LoginForm;
 export type SignupPayload = Omit<SignupForm, 'confirmPassword'>;
 
 export interface AuthResponse {
