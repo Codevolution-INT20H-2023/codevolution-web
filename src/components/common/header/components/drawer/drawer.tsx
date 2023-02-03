@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -12,7 +12,8 @@ import {
   SwipeableDrawer,
 } from '@mui/material';
 
-import { LOCAL_STORAGE_KEYS } from '@/types/common';
+import { useIsLoggedIn } from '@/hooks';
+import { LOCAL_STORAGE_KEYS, ROUTES } from '@/types/common';
 
 import * as Styled from '../../header.styled';
 
@@ -20,6 +21,7 @@ const drawerWidth = 320;
 
 const Drawer: FC = () => {
   const [open, setOpen] = useState(false);
+  const isLoggedIn = useIsLoggedIn();
 
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
@@ -57,10 +59,10 @@ const Drawer: FC = () => {
                 color="inherit"
                 startIcon={<LogoutIcon />}
                 LinkComponent={Styled.NavLink}
-                href="/login"
+                href={ROUTES.LOGIN}
                 onClick={handleLogout}
               >
-                log out
+                log {isLoggedIn ? 'out' : 'in'}
               </Button>
             </ListItem>
             <ListItem>
@@ -68,7 +70,7 @@ const Drawer: FC = () => {
                 color="inherit"
                 startIcon={<AddCircleOutlineIcon />}
                 LinkComponent={Styled.NavLink}
-                href="/signup"
+                href={ROUTES.SIGNUP}
               >
                 sign up
               </Button>
