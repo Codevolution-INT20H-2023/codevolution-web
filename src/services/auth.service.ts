@@ -1,20 +1,21 @@
+import axiosInstance from '@/services/instance';
 import { AuthResponse, LoginPayload, SignupPayload } from '@/types/auth';
 
 class Auth {
-  async login(data: LoginPayload): Promise<AuthResponse> {
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    return {
-      access_token: `${data.email}|${data.password}`,
-      refresh_token: `${data.email}|${data.password}__refresh`,
-    };
+  async login(loginPayload: LoginPayload): Promise<AuthResponse> {
+    const { data } = await axiosInstance.post<AuthResponse>(
+      '/auth/login',
+      loginPayload,
+    );
+    return data;
   }
 
-  async signup(data: SignupPayload): Promise<AuthResponse> {
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    return {
-      refresh_token: `${data.email}|${data.password}`,
-      access_token: `${data.email}|${data.password}__refresh`,
-    };
+  async signup(signupPayload: SignupPayload): Promise<AuthResponse> {
+    const { data } = await axiosInstance.post<AuthResponse>(
+      '/auth/register',
+      signupPayload,
+    );
+    return data;
   }
 }
 

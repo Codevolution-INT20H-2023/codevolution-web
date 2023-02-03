@@ -13,6 +13,6 @@ export type LoginPayload = LoginForm;
 export type SignupPayload = Omit<SignupForm, 'confirmPassword'>;
 
 export interface AuthResponse {
-  access_token: string;
-  refresh_token: string;
+  accessToken: string;
+  refreshToken: string;
 }

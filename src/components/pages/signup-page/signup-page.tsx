@@ -14,7 +14,7 @@ import {
 import { showToast } from '@/redux/reducers/toast.reducer';
 import { AuthService } from '@/services';
 import { SignupForm } from '@/types/auth';
-import { LOCAL_STORAGE_KEYS } from '@/types/common';
+import { LOCAL_STORAGE_KEYS, ROUTES } from '@/types/common';
 import { TOAST_STATUS } from '@/types/redux/toast';
 
 import { initialValues } from './constants';
@@ -29,17 +29,20 @@ const SignupPage: FC = () => {
     async ({ email, password }: SignupForm) => {
       try {
         setIsLoading(true);
-        const { access_token, refresh_token } = await AuthService.signup({
+        const { accessToken, refreshToken } = await AuthService.signup({
           email,
           password,
         });
-        localStorage.setItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN, access_token);
-        localStorage.setItem(LOCAL_STORAGE_KEYS.REFRESH_TOKEN, refresh_token);
-        await push('/');
+        localStorage.setItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN, accessToken);
+        localStorage.setItem(LOCAL_STORAGE_KEYS.REFRESH_TOKEN, refreshToken);
+        await push(ROUTES.HOME);
       } catch (e) {
         if (isAxiosError(e)) {
           dispatch(
-            showToast({ status: TOAST_STATUS.ERROR, message: e.message }),
+            showToast({
+              status: TOAST_STATUS.ERROR,
+              message: e.response?.data.message,
+            }),
           );
         }
       } finally {
