@@ -59,3 +59,10 @@ export interface EditIngredientPayload {
   standard?: MeasureType;
   categoryId?: string;
 }
+
+export interface GridIngredient {
+  id: string;
+  index: number;
+  name: string;
+  category: string;
+}
