@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import { Egg, Kitchen, LocalDining } from '@mui/icons-material';
+import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Button } from '@mui/material';
 
@@ -17,25 +18,43 @@ const DesktopMenu: FC = () => {
   };
 
   return (
-    <>
+    <Styled.Menu>
       <Button
         color="inherit"
-        startIcon={<LogoutIcon />}
-        href={ROUTES.LOGIN}
+        startIcon={<LocalDining />}
+        LinkComponent={Styled.NavLink}
+        href={ROUTES.RECIPES}
+      >
+        Рецепти
+      </Button>
+      <Button
+        color="inherit"
+        startIcon={<Egg />}
+        LinkComponent={Styled.NavLink}
+        href={ROUTES.INGREDIENTS}
+      >
+        Інгредієнти
+      </Button>
+      {isLoggedIn && (
+        <Button
+          color="inherit"
+          startIcon={<Kitchen />}
+          href={ROUTES.REFRIGERATOR}
+          LinkComponent={Styled.NavLink}
+        >
+          Холодильник
+        </Button>
+      )}
+      <Button
+        color="inherit"
+        startIcon={isLoggedIn ? <LogoutIcon /> : <LoginIcon />}
+        href={isLoggedIn ? '' : ROUTES.LOGIN}
         LinkComponent={Styled.NavLink}
         onClick={handleLogout}
       >
-        log {isLoggedIn ? 'out' : 'in'}
+        {isLoggedIn ? 'Вийти' : 'Увійти'}
       </Button>
-      <Button
-        color="inherit"
-        startIcon={<AddCircleOutlineIcon />}
-        LinkComponent={Styled.NavLink}
-        href={ROUTES.SIGNUP}
-      >
-        Sign up
-      </Button>
-    </>
+    </Styled.Menu>
   );
 };
 

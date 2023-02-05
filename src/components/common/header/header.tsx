@@ -12,7 +12,7 @@ const Header: FC = () => {
       <AppBar position="static">
         <Toolbar>
           <Styled.Title variant="h6">
-            <Styled.NavLink href={ROUTES.HOME}>Codevolution</Styled.NavLink>
+            <Styled.NavLink href={ROUTES.RECIPES}>Codevolution</Styled.NavLink>
           </Styled.Title>
           <Menu />
         </Toolbar>

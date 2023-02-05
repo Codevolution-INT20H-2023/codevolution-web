@@ -1,5 +1,5 @@
-import { FC, useEffect, useState } from 'react';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import React, { FC, useState } from 'react';
+import { Egg, Kitchen, LocalDining } from '@mui/icons-material';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -57,22 +57,44 @@ const Drawer: FC = () => {
             <ListItem>
               <Button
                 color="inherit"
-                startIcon={<LogoutIcon />}
+                startIcon={<LocalDining />}
                 LinkComponent={Styled.NavLink}
-                href={ROUTES.LOGIN}
-                onClick={handleLogout}
+                href={ROUTES.RECIPES}
               >
-                log {isLoggedIn ? 'out' : 'in'}
+                Рецепти
               </Button>
             </ListItem>
             <ListItem>
               <Button
                 color="inherit"
-                startIcon={<AddCircleOutlineIcon />}
+                startIcon={<Egg />}
                 LinkComponent={Styled.NavLink}
-                href={ROUTES.SIGNUP}
+                href={ROUTES.INGREDIENTS}
               >
-                sign up
+                Інгредієнти
+              </Button>
+            </ListItem>
+            {isLoggedIn && (
+              <ListItem>
+                <Button
+                  color="inherit"
+                  startIcon={<Kitchen />}
+                  href={ROUTES.REFRIGERATOR}
+                  LinkComponent={Styled.NavLink}
+                >
+                  Холодильник
+                </Button>
+              </ListItem>
+            )}
+            <ListItem>
+              <Button
+                color="inherit"
+                startIcon={<LogoutIcon />}
+                href={ROUTES.LOGIN}
+                LinkComponent={Styled.NavLink}
+                onClick={handleLogout}
+              >
+                {isLoggedIn ? 'Вийти' : 'Увійти'}
               </Button>
             </ListItem>
           </List>

@@ -14,3 +14,9 @@ export const NavLink = styled(Link)`
   color: inherit;
   text-decoration: none;
 `;
+
+export const Menu = styled(Box)`
+  display: flex;
+  justify-content: end;
+  gap: 1rem;
+`;
