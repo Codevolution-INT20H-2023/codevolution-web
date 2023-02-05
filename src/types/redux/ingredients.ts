@@ -4,6 +4,10 @@ export interface IngredientsStore {
   ingredients: Ingredient[];
 }
 
+export interface SetIngredientsAction {
+  ingredients: Ingredient[];
+}
+
 export interface AddIngredientAction {
   ingredient: Ingredient;
 }

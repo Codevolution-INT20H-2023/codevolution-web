@@ -5,6 +5,7 @@ import {
   EditIngredientAction,
   IngredientsStore,
   RemoveIngredientAction,
+  SetIngredientsAction,
 } from '@/types/redux/ingredients';
 
 const initialState: IngredientsStore = {
@@ -15,6 +16,12 @@ const ingredientsSlice = createSlice({
   name: 'ingredients',
   initialState,
   reducers: {
+    setIngredients: (
+      state,
+      { payload }: PayloadAction<SetIngredientsAction>,
+    ) => {
+      state.ingredients = payload.ingredients;
+    },
     addIngredient: (state, { payload }: PayloadAction<AddIngredientAction>) => {
       state.ingredients.push(payload.ingredient);
     },
@@ -39,6 +46,10 @@ const ingredientsSlice = createSlice({
   },
 });
 
-export const { addIngredient, editIngredient, removeIngredient } =
-  ingredientsSlice.actions;
+export const {
+  addIngredient,
+  editIngredient,
+  removeIngredient,
+  setIngredients,
+} = ingredientsSlice.actions;
 export default ingredientsSlice.reducer;

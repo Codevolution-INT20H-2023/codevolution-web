@@ -21,8 +21,7 @@ export interface Ingredient {
   id: string;
   name: string;
   standard: MeasureType;
-  categoryId?: string;
-  category?: {
+  category: {
     id: string;
     name: string;
   };
