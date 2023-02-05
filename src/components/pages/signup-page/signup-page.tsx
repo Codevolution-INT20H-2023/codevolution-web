@@ -11,6 +11,8 @@ import {
   FormField,
   FormWrapper,
 } from '@/components/common/form';
+import { NavLink } from '@/components/common/header/header.styled';
+import { NavLinkWrapper } from '@/components/pages/signup-page/signup-page.styled';
 import { showToast } from '@/redux/reducers/toast.reducer';
 import { AuthService } from '@/services';
 import { SignupForm } from '@/types/auth';
@@ -53,41 +55,46 @@ const SignupPage: FC = () => {
   );
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={onSubmit}
-      enableReinitialize
-      validateOnChange
-    >
-      {({ handleSubmit }) => (
-        <FormWrapper onSubmit={handleSubmit}>
-          <FormField required name="email" type="email" label="Email" />
-          <FormField
-            required
-            name="password"
-            type="password"
-            label="Password"
-          />
-          <FormField
-            required
-            name="confirmPassword"
-            type="password"
-            label="Confirm Password"
-          />
-
-          <FormButtonsContainer>
-            <Button
-              type="submit"
-              text="signup"
-              endIcon={<Send />}
-              loading={isLoading}
-              disabled={isLoading}
+    <>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={onSubmit}
+        enableReinitialize
+        validateOnChange
+      >
+        {({ handleSubmit }) => (
+          <FormWrapper onSubmit={handleSubmit}>
+            <FormField required name="email" type="email" label="Email" />
+            <FormField
+              required
+              name="password"
+              type="password"
+              label="Password"
             />
-          </FormButtonsContainer>
-        </FormWrapper>
-      )}
-    </Formik>
+            <FormField
+              required
+              name="confirmPassword"
+              type="password"
+              label="Confirm Password"
+            />
+
+            <FormButtonsContainer>
+              <Button
+                type="submit"
+                text="signup"
+                endIcon={<Send />}
+                loading={isLoading}
+                disabled={isLoading}
+              />
+            </FormButtonsContainer>
+          </FormWrapper>
+        )}
+      </Formik>
+      <NavLinkWrapper variant="body2">
+        <NavLink href={ROUTES.LOGIN}>Вже зареєстровані?</NavLink>
+      </NavLinkWrapper>
+    </>
   );
 };
 

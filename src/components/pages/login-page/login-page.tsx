@@ -11,6 +11,8 @@ import {
   FormField,
   FormWrapper,
 } from '@/components/common/form';
+import { NavLink } from '@/components/common/header/header.styled';
+import { NavLinkWrapper } from '@/components/pages/signup-page/signup-page.styled';
 import { showToast } from '@/redux/reducers/toast.reducer';
 import { AuthService } from '@/services';
 import { LoginForm } from '@/types/auth';
@@ -50,34 +52,39 @@ const LoginPage: FC = () => {
   );
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      enableReinitialize
-      validateOnChange
-      onSubmit={onSubmit}
-    >
-      {({ handleSubmit }) => (
-        <FormWrapper onSubmit={handleSubmit}>
-          <FormField required name="email" label="Email" type="email" />
-          <FormField
-            required
-            name="password"
-            label="Password"
-            type="password"
-          />
-          <FormButtonsContainer>
-            <Button
-              type="submit"
-              text="login"
-              endIcon={<Send />}
-              loading={isLoading}
-              disabled={isLoading}
+    <>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        enableReinitialize
+        validateOnChange
+        onSubmit={onSubmit}
+      >
+        {({ handleSubmit }) => (
+          <FormWrapper onSubmit={handleSubmit}>
+            <FormField required name="email" label="Email" type="email" />
+            <FormField
+              required
+              name="password"
+              label="Password"
+              type="password"
             />
-          </FormButtonsContainer>
-        </FormWrapper>
-      )}
-    </Formik>
+            <FormButtonsContainer>
+              <Button
+                type="submit"
+                text="login"
+                endIcon={<Send />}
+                loading={isLoading}
+                disabled={isLoading}
+              />
+            </FormButtonsContainer>
+          </FormWrapper>
+        )}
+      </Formik>
+      <NavLinkWrapper variant="body2">
+        <NavLink href={ROUTES.SIGNUP}>Ще не зареєстровані?</NavLink>
+      </NavLinkWrapper>
+    </>
   );
 };
 
