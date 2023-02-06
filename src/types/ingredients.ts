@@ -1,17 +1,17 @@
 import { Category } from '@/types/categories';
 
-enum MeasureType {
-  KILOGRAMMS,
-  LITERS,
-  GRAMMS,
-  MILLILITERS,
-  PIECES,
-  BUNCH,
-  TABLE_SPOON,
-  TEA_SPOON,
-  CUP,
-  PINCH,
-  CLOVE,
+export enum MeasureType {
+  KILOGRAMMS = 'KILOGRAMMS',
+  LITERS = 'LITERS',
+  GRAMMS = 'GRAMMS',
+  MILLILITERS = 'MILLILITERS',
+  PIECES = 'PIECES',
+  BUNCH = 'BUNCH',
+  TABLE_SPOON = 'TABLE_SPOON',
+  TEA_SPOON = 'TEA_SPOON',
+  CUP = 'CUP',
+  PINCH = 'PINCH',
+  CLOVE = 'CLOVE',
 }
 
 export interface Measure {
@@ -39,7 +39,6 @@ export interface GetAllResponse {
 
 export interface GetOneQuery {
   measures?: boolean;
-  category?: boolean;
 }
 
 export type GetOneResponse = Ingredient;
@@ -54,9 +53,10 @@ export interface CreateIngredientPayload {
 export type CreateIngredientResponse = Ingredient;
 
 export interface EditIngredientPayload {
-  name?: string;
-  standard?: MeasureType;
-  categoryId?: string;
+  name: string;
+  standard: MeasureType;
+  categoryId: string;
+  measures?: Measure[];
 }
 
 export interface GridIngredient {
@@ -64,4 +64,12 @@ export interface GridIngredient {
   index: number;
   name: string;
   category: string;
+  standard: MeasureType;
+  ingredient: Ingredient;
+}
+
+export interface ModifyIngredientForm
+  extends Omit<Ingredient, 'id' | 'category'> {
+  categoryId: string;
+  measures: Measure[];
 }

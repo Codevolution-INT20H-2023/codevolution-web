@@ -12,10 +12,8 @@ import { isAxiosError } from 'axios';
 
 import GroupTable from '@/components/common/group-table';
 import Loader from '@/components/common/loader';
-import {
-  columns,
-  mockData,
-} from '@/components/pages/ingredients-page/constants';
+import CreateIngredient from '@/components/pages/ingredients-page/components/create-ingedient';
+import { columns } from '@/components/pages/ingredients-page/constants';
 import transformData from '@/components/pages/ingredients-page/utils';
 import { useAppSelector } from '@/hooks';
 import { setCategories } from '@/redux/reducers/categories.reducer';
@@ -74,6 +72,7 @@ const IngredientsPage: FC = () => {
 
   return (
     <Styled.Container>
+      <CreateIngredient />
       <CreateCategory />
       <FormControlLabel
         control={<Switch checked={groupItems} onChange={handleGroupChange} />}
@@ -83,7 +82,7 @@ const IngredientsPage: FC = () => {
       <GroupTable
         groupFields={[groupItems ? 'category' : '']}
         columns={columns}
-        rows={mockData}
+        rows={rows}
       />
     </Styled.Container>
   );

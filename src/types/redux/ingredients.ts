@@ -1,3 +1,5 @@
+import { Category } from '@/types/categories';
+
 import { EditIngredientPayload, Ingredient } from '../ingredients';
 
 export interface IngredientsStore {
@@ -13,7 +15,9 @@ export interface AddIngredientAction {
 }
 
 export interface EditIngredientAction {
-  ingredient: EditIngredientPayload;
+  ingredient: Omit<EditIngredientPayload, 'categoryId'> & {
+    category?: Category;
+  };
   id: string;
 }
 

@@ -1,11 +1,13 @@
 import { GridIngredient, Ingredient } from '@/types/ingredients';
 
 const transformData = (data: Ingredient[]): GridIngredient[] =>
-  data.map(({ id, category, name }, index) => ({
-    id: id,
+  data.map((ingredient, index) => ({
+    id: ingredient.id,
     index: index + 1,
-    category: category?.name,
-    name,
+    category: ingredient.category.name,
+    name: ingredient.name,
+    standard: ingredient.standard,
+    ingredient: ingredient,
   }));
 
 export default transformData;
