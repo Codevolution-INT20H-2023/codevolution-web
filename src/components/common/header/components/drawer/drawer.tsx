@@ -1,6 +1,5 @@
 import { FC, useState } from 'react';
 import { Egg, Kitchen, LocalDining } from '@mui/icons-material';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
