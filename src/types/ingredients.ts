@@ -1,3 +1,5 @@
+import { Category } from '@/types/categories';
+
 enum MeasureType {
   KILOGRAMMS,
   LITERS,
@@ -21,10 +23,7 @@ export interface Ingredient {
   id: string;
   name: string;
   standard: MeasureType;
-  category: {
-    id: string;
-    name: string;
-  };
+  category: Category;
   measures?: Measure[];
 }
 
