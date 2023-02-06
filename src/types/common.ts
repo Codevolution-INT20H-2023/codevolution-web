@@ -6,5 +6,7 @@ export enum LOCAL_STORAGE_KEYS {
 export enum ROUTES {
   LOGIN = '/login',
   SIGNUP = '/signup',
+  REFRIGERATOR = '/refrigerator',
+  INGREDIENTS = '/ingredients',
   HOME = '/',
 }
