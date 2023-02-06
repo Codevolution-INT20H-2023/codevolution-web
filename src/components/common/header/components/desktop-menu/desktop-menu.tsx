@@ -4,6 +4,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Button } from '@mui/material';
 
+import NavLink from '@/components/common/styles/nav-link';
 import { useIsLoggedIn } from '@/hooks';
 import { LOCAL_STORAGE_KEYS, ROUTES } from '@/types/common';
 
@@ -22,7 +23,7 @@ const DesktopMenu: FC = () => {
       <Button
         color="inherit"
         startIcon={<LocalDining />}
-        LinkComponent={Styled.NavLink}
+        LinkComponent={NavLink}
         href={ROUTES.HOME}
       >
         Рецепти
@@ -30,7 +31,7 @@ const DesktopMenu: FC = () => {
       <Button
         color="inherit"
         startIcon={<Egg />}
-        LinkComponent={Styled.NavLink}
+        LinkComponent={NavLink}
         href={ROUTES.INGREDIENTS}
       >
         Інгредієнти
@@ -40,7 +41,7 @@ const DesktopMenu: FC = () => {
           color="inherit"
           startIcon={<Kitchen />}
           href={ROUTES.REFRIGERATOR}
-          LinkComponent={Styled.NavLink}
+          LinkComponent={NavLink}
         >
           Холодильник
         </Button>
@@ -49,7 +50,7 @@ const DesktopMenu: FC = () => {
         color="inherit"
         startIcon={isLoggedIn ? <LogoutIcon /> : <LoginIcon />}
         href={isLoggedIn ? '' : ROUTES.LOGIN}
-        LinkComponent={Styled.NavLink}
+        LinkComponent={NavLink}
         onClick={handleLogout}
       >
         {isLoggedIn ? 'Вийти' : 'Увійти'}

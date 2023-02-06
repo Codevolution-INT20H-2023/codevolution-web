@@ -12,10 +12,9 @@ import {
   SwipeableDrawer,
 } from '@mui/material';
 
+import NavLink from '@/components/common/styles/nav-link';
 import { useIsLoggedIn } from '@/hooks';
 import { LOCAL_STORAGE_KEYS, ROUTES } from '@/types/common';
-
-import * as Styled from '../../header.styled';
 
 const drawerWidth = 320;
 
@@ -58,7 +57,7 @@ const Drawer: FC = () => {
               <Button
                 color="inherit"
                 startIcon={<LocalDining />}
-                LinkComponent={Styled.NavLink}
+                LinkComponent={NavLink}
                 href={ROUTES.HOME}
               >
                 Рецепти
@@ -68,7 +67,7 @@ const Drawer: FC = () => {
               <Button
                 color="inherit"
                 startIcon={<Egg />}
-                LinkComponent={Styled.NavLink}
+                LinkComponent={NavLink}
                 href={ROUTES.INGREDIENTS}
               >
                 Інгредієнти
@@ -80,7 +79,7 @@ const Drawer: FC = () => {
                   color="inherit"
                   startIcon={<Kitchen />}
                   href={ROUTES.REFRIGERATOR}
-                  LinkComponent={Styled.NavLink}
+                  LinkComponent={NavLink}
                 >
                   Холодильник
                 </Button>
@@ -91,7 +90,7 @@ const Drawer: FC = () => {
                 color="inherit"
                 startIcon={<LogoutIcon />}
                 href={ROUTES.LOGIN}
-                LinkComponent={Styled.NavLink}
+                LinkComponent={NavLink}
                 onClick={handleLogout}
               >
                 {isLoggedIn ? 'Вийти' : 'Увійти'}

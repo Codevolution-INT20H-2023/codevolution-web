@@ -5,14 +5,14 @@ import { isAxiosError } from 'axios';
 import { Formik } from 'formik';
 import { useRouter } from 'next/router';
 
+import BottomLinkWrapper from '@/components/common/bottom-link-wrapper';
 import Button from '@/components/common/button';
 import {
   FormButtonsContainer,
   FormField,
   FormWrapper,
 } from '@/components/common/form';
-import { NavLink } from '@/components/common/header/header.styled';
-import { NavLinkWrapper } from '@/components/pages/signup-page/signup-page.styled';
+import NavLink from '@/components/common/styles/nav-link';
 import { showToast } from '@/redux/reducers/toast.reducer';
 import { AuthService } from '@/services';
 import { SignupForm } from '@/types/auth';
@@ -91,9 +91,9 @@ const SignupPage: FC = () => {
           </FormWrapper>
         )}
       </Formik>
-      <NavLinkWrapper variant="body2">
+      <BottomLinkWrapper>
         <NavLink href={ROUTES.LOGIN}>Вже зареєстровані?</NavLink>
-      </NavLinkWrapper>
+      </BottomLinkWrapper>
     </>
   );
 };
