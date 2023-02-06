@@ -1,5 +1,5 @@
-import { FC, useEffect, useState } from 'react';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import React, { FC, useState } from 'react';
+import { Egg, Kitchen, LocalDining } from '@mui/icons-material';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -12,10 +12,9 @@ import {
   SwipeableDrawer,
 } from '@mui/material';
 
+import NavLink from '@/components/common/styles/nav-link';
 import { useIsLoggedIn } from '@/hooks';
 import { LOCAL_STORAGE_KEYS, ROUTES } from '@/types/common';
-
-import * as Styled from '../../header.styled';
 
 const drawerWidth = 320;
 
@@ -57,22 +56,44 @@ const Drawer: FC = () => {
             <ListItem>
               <Button
                 color="inherit"
-                startIcon={<LogoutIcon />}
-                LinkComponent={Styled.NavLink}
-                href={ROUTES.LOGIN}
-                onClick={handleLogout}
+                startIcon={<LocalDining />}
+                LinkComponent={NavLink}
+                href={ROUTES.HOME}
               >
-                log {isLoggedIn ? 'out' : 'in'}
+                Рецепти
               </Button>
             </ListItem>
             <ListItem>
               <Button
                 color="inherit"
-                startIcon={<AddCircleOutlineIcon />}
-                LinkComponent={Styled.NavLink}
-                href={ROUTES.SIGNUP}
+                startIcon={<Egg />}
+                LinkComponent={NavLink}
+                href={ROUTES.INGREDIENTS}
               >
-                sign up
+                Інгредієнти
+              </Button>
+            </ListItem>
+            {isLoggedIn && (
+              <ListItem>
+                <Button
+                  color="inherit"
+                  startIcon={<Kitchen />}
+                  href={ROUTES.REFRIGERATOR}
+                  LinkComponent={NavLink}
+                >
+                  Холодильник
+                </Button>
+              </ListItem>
+            )}
+            <ListItem>
+              <Button
+                color="inherit"
+                startIcon={<LogoutIcon />}
+                href={ROUTES.LOGIN}
+                LinkComponent={NavLink}
+                onClick={handleLogout}
+              >
+                {isLoggedIn ? 'Вийти' : 'Увійти'}
               </Button>
             </ListItem>
           </List>

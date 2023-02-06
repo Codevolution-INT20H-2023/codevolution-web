@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { AppBar, Toolbar } from '@mui/material';
 
+import NavLink from '@/components/common/styles/nav-link';
 import { ROUTES } from '@/types/common';
 
 import Menu from './components/menu';
@@ -12,7 +13,7 @@ const Header: FC = () => {
       <AppBar position="static">
         <Toolbar>
           <Styled.Title variant="h6">
-            <Styled.NavLink href={ROUTES.HOME}>Codevolution</Styled.NavLink>
+            <NavLink href={ROUTES.HOME}>Codevolution</NavLink>
           </Styled.Title>
           <Menu />
         </Toolbar>

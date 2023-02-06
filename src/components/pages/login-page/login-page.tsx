@@ -5,12 +5,14 @@ import { isAxiosError } from 'axios';
 import { Formik } from 'formik';
 import { useRouter } from 'next/router';
 
+import BottomLinkWrapper from '@/components/common/bottom-link-wrapper';
 import Button from '@/components/common/button';
 import {
   FormButtonsContainer,
   FormField,
   FormWrapper,
 } from '@/components/common/form';
+import NavLink from '@/components/common/styles/nav-link';
 import { showToast } from '@/redux/reducers/toast.reducer';
 import { AuthService } from '@/services';
 import { LoginForm } from '@/types/auth';
@@ -50,34 +52,39 @@ const LoginPage: FC = () => {
   );
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      enableReinitialize
-      validateOnChange
-      onSubmit={onSubmit}
-    >
-      {({ handleSubmit }) => (
-        <FormWrapper onSubmit={handleSubmit}>
-          <FormField required name="email" label="Email" type="email" />
-          <FormField
-            required
-            name="password"
-            label="Password"
-            type="password"
-          />
-          <FormButtonsContainer>
-            <Button
-              type="submit"
-              text="login"
-              endIcon={<Send />}
-              loading={isLoading}
-              disabled={isLoading}
+    <>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        enableReinitialize
+        validateOnChange
+        onSubmit={onSubmit}
+      >
+        {({ handleSubmit }) => (
+          <FormWrapper onSubmit={handleSubmit}>
+            <FormField required name="email" label="Email" type="email" />
+            <FormField
+              required
+              name="password"
+              label="Password"
+              type="password"
             />
-          </FormButtonsContainer>
-        </FormWrapper>
-      )}
-    </Formik>
+            <FormButtonsContainer>
+              <Button
+                type="submit"
+                text="login"
+                endIcon={<Send />}
+                loading={isLoading}
+                disabled={isLoading}
+              />
+            </FormButtonsContainer>
+          </FormWrapper>
+        )}
+      </Formik>
+      <BottomLinkWrapper>
+        <NavLink href={ROUTES.SIGNUP}>Ще не зареєстровані?</NavLink>
+      </BottomLinkWrapper>
+    </>
   );
 };
 

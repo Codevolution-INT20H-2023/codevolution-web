@@ -6,7 +6,7 @@ import {
 
 import * as Styled from './button.styled';
 
-interface ButtonProps extends MuiButtonProps {
+export interface ButtonProps extends MuiButtonProps {
   loading?: boolean;
   text: string;
 }
