@@ -37,7 +37,7 @@ const SignupPage: FC = () => {
         });
         localStorage.setItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN, accessToken);
         localStorage.setItem(LOCAL_STORAGE_KEYS.REFRESH_TOKEN, refreshToken);
-        await push(ROUTES.RECIPES);
+        await push(ROUTES.HOME);
       } catch (e) {
         if (isAxiosError(e)) {
           dispatch(

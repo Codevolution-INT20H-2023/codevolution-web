@@ -8,5 +8,5 @@ export enum ROUTES {
   SIGNUP = '/signup',
   REFRIGERATOR = '/refrigerator',
   INGREDIENTS = '/ingredients',
-  RECIPES = '/',
+  HOME = '/',
 }

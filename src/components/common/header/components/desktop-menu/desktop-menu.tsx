@@ -23,7 +23,7 @@ const DesktopMenu: FC = () => {
         color="inherit"
         startIcon={<LocalDining />}
         LinkComponent={Styled.NavLink}
-        href={ROUTES.RECIPES}
+        href={ROUTES.HOME}
       >
         Рецепти
       </Button>
