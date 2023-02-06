@@ -1,6 +1,5 @@
 import { FC, useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Modal } from '@mui/material';
 import { isAxiosError } from 'axios';
 import { Formik } from 'formik';
 
@@ -10,6 +9,7 @@ import {
   FormField,
   FormWrapper,
 } from '@/components/common/form';
+import Modal from '@/components/common/modal';
 import { addCategory } from '@/redux/reducers/categories.reducer';
 import { showToast } from '@/redux/reducers/toast.reducer';
 import { CategoriesService } from '@/services';
@@ -17,7 +17,6 @@ import { CreateCategoryForm } from '@/types/categories';
 import { TOAST_STATUS } from '@/types/redux/toast';
 
 import { initialValues } from './constants';
-import * as Styled from './create-category.styled';
 import { validationSchema } from './validation';
 
 const CreateCategory: FC = () => {
@@ -55,32 +54,29 @@ const CreateCategory: FC = () => {
 
   return (
     <>
-      <Button text="Create category" onClick={handleOpen} fullWidth />
-      <Modal open={open} onClose={handleClose}>
-        <Styled.ModalContent>
-          <Styled.Title>Створіть нову категорію</Styled.Title>
-          <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            enableReinitialize
-            validateOnChange
-            onSubmit={onSubmit}
-          >
-            {({ handleSubmit, isSubmitting }) => (
-              <FormWrapper onSubmit={handleSubmit}>
-                <FormField name="name" required label="Назва" />
-                <FormButtonsContainer>
-                  <Button
-                    text="Створити"
-                    type="submit"
-                    loading={isSubmitting}
-                    disabled={isSubmitting}
-                  />
-                </FormButtonsContainer>
-              </FormWrapper>
-            )}
-          </Formik>
-        </Styled.ModalContent>
+      <Button text="Створити категорію" onClick={handleOpen} fullWidth />
+      <Modal open={open} onClose={handleClose} title="Створіть нову категорію">
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          enableReinitialize
+          validateOnChange
+          onSubmit={onSubmit}
+        >
+          {({ handleSubmit, isSubmitting }) => (
+            <FormWrapper onSubmit={handleSubmit}>
+              <FormField name="name" required label="Назва" />
+              <FormButtonsContainer>
+                <Button
+                  text="Створити"
+                  type="submit"
+                  loading={isSubmitting}
+                  disabled={isSubmitting}
+                />
+              </FormButtonsContainer>
+            </FormWrapper>
+          )}
+        </Formik>
       </Modal>
     </>
   );
