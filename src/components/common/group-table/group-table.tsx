@@ -1,38 +1,36 @@
-import { FC } from 'react';
-import {
-  DataGridPremium,
-  GridColumns,
-  useGridApiRef,
-  useKeepGroupedColumnsHidden,
-} from '@mui/x-data-grid-premium';
+import { FC, useCallback, useState } from 'react';
+import { DataGridPremium, GridColumns } from '@mui/x-data-grid-premium';
 
 import * as Styled from './group-table.styled';
 
 interface GroupTableProps {
-  groupField: string;
+  groupFields?: string[];
   columns: GridColumns;
   rows: object[];
 }
 
-const GroupTable: FC<GroupTableProps> = ({ columns, groupField, rows }) => {
-  const apiRef = useGridApiRef();
-  const initialState = useKeepGroupedColumnsHidden({
-    apiRef,
-    initialState: {
-      rowGrouping: {
-        model: [groupField],
-      },
-    },
-  });
+const GroupTable: FC<GroupTableProps> = ({
+  columns,
+  groupFields = [],
+  rows,
+}) => {
+  const [pageSize, setPageSize] = useState(5);
+
+  const onPageSizeChange = useCallback((size: number) => {
+    setPageSize(size);
+  }, []);
 
   return (
     <Styled.Container>
       <DataGridPremium
         columns={columns}
         rows={rows}
-        apiRef={apiRef}
-        initialState={initialState}
+        rowGroupingModel={groupFields}
         rowGroupingColumnMode="single"
+        pageSize={pageSize}
+        onPageSizeChange={onPageSizeChange}
+        rowsPerPageOptions={[5, 10, 15]}
+        pagination
       />
     </Styled.Container>
   );
