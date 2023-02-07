@@ -9,11 +9,11 @@ import {
   FormWrapper,
 } from '@/components/common/form';
 import { useAppSelector } from '@/hooks';
+import { MeasureType } from '@/types/common';
 import {
   CreateIngredientPayload,
   EditIngredientPayload,
   Ingredient,
-  MeasureType,
   ModifyIngredientForm,
 } from '@/types/ingredients';
 
