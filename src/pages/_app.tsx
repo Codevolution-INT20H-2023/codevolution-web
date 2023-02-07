@@ -17,7 +17,6 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   useEffect(() => {
-    console.log('IS LOGGED IN: ' + isLoggedIn);
     if (
       !isLoggedIn &&
       !router.asPath.includes('signup') &&

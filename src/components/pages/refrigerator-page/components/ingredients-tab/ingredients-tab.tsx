@@ -29,7 +29,6 @@ const IngredientsTab: FC = () => {
   const [groupItems, setGroupItems] = useState(false);
 
   const { products } = useAppSelector(state => state.products);
-  console.log(products);
   const dispatch = useDispatch();
 
   const handleGroupChange = useCallback(
