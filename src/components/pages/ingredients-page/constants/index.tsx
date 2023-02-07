@@ -7,10 +7,10 @@ import RemoveIngredient from '../components/remove-ingredient';
 import * as Styled from '../ingredients-page.styled';
 
 export const columns: GridColDef[] = [
-  { field: 'index', headerName: 'No.', width: 90 },
-  { field: 'name', headerName: 'Name', width: 200 },
-  { field: 'category', headerName: 'Category', width: 200 },
-  { field: 'standard', headerName: 'Standard', width: 200 },
+  { field: 'index', headerName: 'Номер', width: 90 },
+  { field: 'name', headerName: 'Назва', width: 200 },
+  { field: 'category', headerName: 'Категорія', width: 200 },
+  { field: 'standard', headerName: 'Стандарта міра', width: 200 },
   {
     field: 'ingredient',
     width: 350,
