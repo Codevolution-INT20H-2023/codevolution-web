@@ -24,7 +24,7 @@ export interface getAllProductsResponse {
 export type getOneProductResponse = Product;
 
 export interface getAllRecipesResponse {
-  recipes: Recipe[];
+  availableRecipes: Recipe[];
 }
 
 export interface GridProduct {
