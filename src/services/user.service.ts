@@ -3,7 +3,7 @@ import { LOCAL_STORAGE_KEYS } from '@/types/common';
 import {
   CreateProductPayload,
   CreateProductResponse,
-  editProductPayload,
+  EditProductPayload,
   getAllProductsResponse,
   getAllRecipesResponse,
   getOneProductResponse,
@@ -25,7 +25,7 @@ class User {
     return data;
   }
 
-  async editProduct(id: string, payload: editProductPayload): Promise<void> {
+  async editProduct(id: string, payload: EditProductPayload): Promise<void> {
     await axiosInstance.patch(`/users/products/${id}`, payload, {
       headers: {
         Authorization: `Bearer ${this.getToken()}`,

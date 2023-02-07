@@ -1,15 +1,9 @@
-import { Category } from '@/types/categories';
-import { MeasureType } from '@/types/ingredients';
+import { Ingredient, MeasureType } from '@/types/ingredients';
 import { Recipe } from '@/types/recipes';
 
 export interface Product {
-  ingredient: {
-    id: string;
-    name: string;
-    category: Category;
-  };
+  ingredient: Omit<Ingredient, 'measures'>;
   amount: number;
-  measure: MeasureType;
 }
 
 export interface CreateProductPayload {
@@ -19,7 +13,7 @@ export interface CreateProductPayload {
 
 export type CreateProductResponse = Product;
 
-export interface editProductPayload {
+export interface EditProductPayload {
   amount: number;
 }
 
@@ -31,4 +25,20 @@ export type getOneProductResponse = Product;
 
 export interface getAllRecipesResponse {
   recipes: Recipe[];
+}
+
+export interface GridProduct {
+  id: string;
+  index: number;
+  name: string;
+  category: string;
+  measure: MeasureType;
+  amount: number;
+  product: Product;
+}
+
+export interface ModifyProductForm {
+  ingredientId: string;
+  amount: number;
+  measure: MeasureType;
 }
