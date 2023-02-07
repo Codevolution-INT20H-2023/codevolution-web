@@ -20,6 +20,7 @@ import { setCategories } from '@/redux/reducers/categories.reducer';
 import { setIngredients } from '@/redux/reducers/ingredients.reducer';
 import { showToast } from '@/redux/reducers/toast.reducer';
 import { CategoriesService, IngredientsService } from '@/services';
+import { CategoryType } from '@/types/categories';
 import { TOAST_STATUS } from '@/types/redux/toast';
 
 import CreateCategory from './components/create-category';
@@ -45,9 +46,11 @@ const IngredientsPage: FC = () => {
     try {
       setIsLoading(true);
       const { ingredients } = await IngredientsService.getAll();
-      const { categories } = await CategoriesService.getAll();
+      const { categories } = await CategoriesService.getAll(
+        CategoryType.INGREDIENT,
+      );
       dispatch(setIngredients({ ingredients }));
-      dispatch(setCategories({ categories }));
+      dispatch(setCategories({ categories, type: CategoryType.INGREDIENT }));
     } catch (e) {
       if (isAxiosError(e)) {
         dispatch(

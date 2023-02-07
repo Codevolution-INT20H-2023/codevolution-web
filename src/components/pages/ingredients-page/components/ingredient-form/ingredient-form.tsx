@@ -29,7 +29,9 @@ interface IngredientFormProps {
 }
 
 const IngredientForm: FC<IngredientFormProps> = ({ ingredient, onSubmit }) => {
-  const { categories } = useAppSelector(state => state.categories);
+  const categories = useAppSelector(
+    state => state.categories.categories.ingredient,
+  );
 
   const initialValues: ModifyIngredientForm = useMemo(
     () => ({

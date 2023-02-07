@@ -13,7 +13,7 @@ import Modal from '@/components/common/modal';
 import { addCategory } from '@/redux/reducers/categories.reducer';
 import { showToast } from '@/redux/reducers/toast.reducer';
 import { CategoriesService } from '@/services';
-import { CreateCategoryForm } from '@/types/categories';
+import { CategoryType, CreateCategoryForm } from '@/types/categories';
 import { TOAST_STATUS } from '@/types/redux/toast';
 
 import { initialValues } from './constants';
@@ -35,8 +35,11 @@ const CreateCategory: FC = () => {
   const onSubmit = useCallback(
     async (data: CreateCategoryForm) => {
       try {
-        const category = await CategoriesService.create(data);
-        dispatch(addCategory({ category }));
+        const category = await CategoriesService.create(
+          CategoryType.INGREDIENT,
+          data,
+        );
+        dispatch(addCategory({ category, type: CategoryType.INGREDIENT }));
         setOpen(false);
       } catch (e) {
         if (isAxiosError(e)) {

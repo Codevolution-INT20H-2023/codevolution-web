@@ -20,7 +20,9 @@ interface EditIngredientProps {
 
 const EditIngredient: FC<EditIngredientProps> = ({ ingredient }) => {
   const [open, setOpen] = useState(false);
-  const { categories } = useAppSelector(state => state.categories);
+  const categories = useAppSelector(
+    state => state.categories.categories.ingredient,
+  );
 
   const dispatch = useDispatch();
 
