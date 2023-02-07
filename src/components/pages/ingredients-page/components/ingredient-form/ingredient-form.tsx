@@ -9,11 +9,11 @@ import {
   FormWrapper,
 } from '@/components/common/form';
 import { useAppSelector } from '@/hooks';
+import { MeasureType } from '@/types/common';
 import {
   CreateIngredientPayload,
   EditIngredientPayload,
   Ingredient,
-  MeasureType,
   ModifyIngredientForm,
 } from '@/types/ingredients';
 
@@ -29,7 +29,9 @@ interface IngredientFormProps {
 }
 
 const IngredientForm: FC<IngredientFormProps> = ({ ingredient, onSubmit }) => {
-  const { categories } = useAppSelector(state => state.categories);
+  const categories = useAppSelector(
+    state => state.categories.categories.ingredient,
+  );
 
   const initialValues: ModifyIngredientForm = useMemo(
     () => ({

@@ -1,3 +1,8 @@
+export enum CategoryType {
+  INGREDIENT = 'ingredient',
+  RECIPE = 'recipe',
+}
+
 export interface Category {
   id: string;
   name: string;

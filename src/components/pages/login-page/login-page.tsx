@@ -34,7 +34,7 @@ const LoginPage: FC = () => {
         const { accessToken, refreshToken } = await AuthService.login(data);
         localStorage.setItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN, accessToken);
         localStorage.setItem(LOCAL_STORAGE_KEYS.REFRESH_TOKEN, refreshToken);
-        await push(ROUTES.HOME);
+        await push(ROUTES.RECIPES);
       } catch (e) {
         if (isAxiosError(e)) {
           dispatch(

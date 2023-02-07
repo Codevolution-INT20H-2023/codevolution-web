@@ -1,20 +1,22 @@
 import { ChangeEvent, FC, useCallback, useMemo, useState } from 'react';
 import { FormControlLabel, Switch } from '@mui/material';
 
+import Button from '@/components/common/button';
 import CreateCategory from '@/components/common/create-category';
 import GroupTable from '@/components/common/group-table';
-import CreateIngredient from '@/components/pages/ingredients-page/components/create-ingedient';
-import { columns } from '@/components/pages/ingredients-page/constants';
-import transformData from '@/components/pages/ingredients-page/utils';
+import NavLink from '@/components/common/styles/nav-link';
 import { useAppSelector } from '@/hooks';
 import { CategoryType } from '@/types/categories';
+import { ROUTES } from '@/types/common';
 
-import * as Styled from './ingredients-page.styled';
+import { columns } from './constants';
+import * as Styled from './recipes-page.styled';
+import { transformData } from './utils';
 
-const IngredientsPage: FC = () => {
+const RecipesPage: FC = () => {
   const [groupItems, setGroupItems] = useState(false);
 
-  const { ingredients } = useAppSelector(state => state.ingredients);
+  const { recipes } = useAppSelector(state => state.recipes);
 
   const handleGroupChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -23,12 +25,17 @@ const IngredientsPage: FC = () => {
     [],
   );
 
-  const rows = useMemo(() => transformData(ingredients), [ingredients]);
+  const rows = useMemo(() => transformData(recipes), [recipes]);
 
   return (
     <Styled.Container>
-      <CreateIngredient />
-      <CreateCategory type={CategoryType.INGREDIENT} />
+      <CreateCategory type={CategoryType.RECIPE} />
+      <Button
+        text="Створити рецепт"
+        href={`${ROUTES.RECIPES}/create`}
+        LinkComponent={NavLink}
+        fullWidth
+      />
       <FormControlLabel
         control={<Switch checked={groupItems} onChange={handleGroupChange} />}
         label="Групувати за категоріями"
@@ -43,4 +50,4 @@ const IngredientsPage: FC = () => {
   );
 };
 
-export default IngredientsPage;
+export default RecipesPage;
