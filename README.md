@@ -1,34 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+  <img src="https://i.imgur.com/X4dHh5o.png" width="500" alt="codevolution back-end logo" /></a>
+</p>
 
-## Getting Started
+  <p align="center">Back-end service for the INT20H-2023 Test</p>
+    <p align="center">
 
-First, run the development server:
+## Description
 
+Web-app that helps you to organise recipes, check their availability and try new dishes
+## Installation
+
+Clone the repository and execute:
 ```bash
-npm run dev
-# or
-yarn dev
+$ npm install
+```
+Install husky:
+```bash
+$ npm run prepare
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Running the app
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```bash
+# development
+$ npm run dev
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+# production mode
+$ npm run build
+$ npm run start
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Documentation
 
-## Learn More
+On main page you will be redirected to `/recipes`, where you can see all recipes in data base. You can sort them, group by category, edit and delete.
 
-To learn more about Next.js, take a look at the following resources:
+If you are not logged in, you should go to the login page and login into system. If you don't have the account - you can go to the signup page via link below
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+App is fully responsive, so you can comfortably use it on any device
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+You can create entities such as `Ingredient` or `Recipe`, edit them and delete. Before deleting you will be asked whether you are sure to delete item or not. It is made to prevent accidental deleting
 
-## Deploy on Vercel
+## Stay in touch
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Authors - [Andrew Vitrenko](https://github.com/andrewvitrenko), [Oleksandr Humeniuk](https://github.com/OleksandrHumeniuk)
+- Deployed [Vercel](https://codevolution-web.vercel.app/).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## License
+
+Back-end service is [MIT licensed](LICENSE).
