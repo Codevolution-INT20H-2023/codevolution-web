@@ -10,6 +10,7 @@ import {
 } from '@/components/common/form';
 import { transformIngredients } from '@/components/pages/recipes-page/components/recipe-form/utils';
 import { useAppSelector } from '@/hooks';
+import { Ingredient } from '@/types/ingredients';
 import {
   CreateRecipePayload,
   EditRecipePayload,
@@ -17,7 +18,6 @@ import {
   Recipe,
 } from '@/types/recipes';
 
-import { MeasureOptions } from './constants';
 import * as Styled from './recipe-form.styled';
 import { validationSchema } from './validation';
 
@@ -34,6 +34,28 @@ const RecipeForm: FC<RecipeFormProps> = ({ recipe, onSubmit }) => {
 
   const formattedIngredients = useMemo(
     () => transformIngredients(ingredients),
+    [ingredients],
+  );
+
+  const getIngredientMeasures = useCallback(
+    (ingredientId: string) => {
+      if (!ingredientId) return [];
+
+      const ingredient = ingredients.find(
+        ({ id }) => id === ingredientId,
+      ) as Ingredient;
+      const measures = ingredient.measures;
+      const standard = ingredient.standard;
+
+      if (measures?.length) {
+        return measures.map(({ measure }) => ({
+          label: measure,
+          value: measure,
+        }));
+      } else {
+        return [{ label: standard, value: standard }];
+      }
+    },
     [ingredients],
   );
 
@@ -120,12 +142,8 @@ const RecipeForm: FC<RecipeFormProps> = ({ recipe, onSubmit }) => {
                       select
                       label="Міра виміру"
                     >
-                      {MeasureOptions.filter(
-                        option =>
-                          option.value === values.products[index].measure ||
-                          !values.products.find(
-                            v => v.measure === option.value,
-                          ),
+                      {getIngredientMeasures(
+                        values.products[index].ingredientId,
                       ).map(option => (
                         <MenuItem key={option.value} value={option.value}>
                           {option.label}
