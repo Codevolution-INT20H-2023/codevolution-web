@@ -6,6 +6,10 @@ import {
   Recipe,
 } from '@/types/recipes';
 
+export interface UserRecipeStore {
+  availableRecipes: Recipe[];
+}
+
 export interface RecipeStore {
   recipes: Recipe[];
   current: Recipe | null;
@@ -13,6 +17,10 @@ export interface RecipeStore {
 
 export interface SetAllRecipesAction {
   recipes: Recipe[];
+}
+
+export interface SetAllUserRecipesAction {
+  availableRecipes: Recipe[];
 }
 
 export interface AddRecipeAction {

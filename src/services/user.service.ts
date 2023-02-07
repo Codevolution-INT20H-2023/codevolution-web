@@ -60,7 +60,7 @@ class User {
   }
 
   async getAllRecipes(): Promise<getAllRecipesResponse> {
-    const { data } = await axiosInstance.delete('/users/availableRecipes', {
+    const { data } = await axiosInstance.get('/users/availableRecipes', {
       headers: {
         Authorization: `Bearer ${this.getToken()}`,
       },

@@ -6,6 +6,7 @@ import ingredientsReducer from '@/redux/reducers/ingredients.reducer';
 import productsReducer from '@/redux/reducers/products.reducer';
 import recipesReducer from '@/redux/reducers/recipes.reducer';
 import toastReducer from '@/redux/reducers/toast.reducer';
+import userRecipesReducer from '@/redux/reducers/user-recipes.reducer';
 
 const makeStore = () =>
   configureStore({
@@ -15,6 +16,7 @@ const makeStore = () =>
       categories: categoriesReducer,
       recipes: recipesReducer,
       products: productsReducer,
+      userRecipes: userRecipesReducer,
     },
   });
 
