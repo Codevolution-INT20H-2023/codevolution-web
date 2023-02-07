@@ -3,6 +3,7 @@ import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { Box, Tab } from '@mui/material';
 
 import IngredientsTab from '@/components/pages/refrigerator-page/components/ingredients-tab';
+import RecipesTab from '@/components/pages/refrigerator-page/components/recipes-tab';
 
 const RefrigeratorPage: FC = () => {
   const [value, setValue] = useState('1');
@@ -22,7 +23,9 @@ const RefrigeratorPage: FC = () => {
         <TabPanel value="1">
           <IngredientsTab />
         </TabPanel>
-        <TabPanel value="2">{'RecipesTab'}</TabPanel>
+        <TabPanel value="2">
+          <RecipesTab />
+        </TabPanel>
       </TabContext>
     </Box>
   );

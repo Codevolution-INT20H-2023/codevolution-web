@@ -1,5 +1,6 @@
 import axiosInstance from '@/services/instance';
 import {
+  CategoryType,
   CreateCategoryPayload,
   CreateCategoryResponse,
   EditCategoryPayload,
@@ -13,9 +14,12 @@ class Categories {
     return localStorage.getItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN);
   }
 
-  async getAll(query?: GetAllQuery): Promise<GetAllResponse> {
+  async getAll(
+    type: CategoryType,
+    query?: GetAllQuery,
+  ): Promise<GetAllResponse> {
     const { data } = await axiosInstance.get<GetAllResponse>(
-      '/ingredientCategories',
+      `/${type}Categories`,
       {
         params: query,
         headers: {
@@ -27,10 +31,11 @@ class Categories {
   }
 
   async create(
+    type: CategoryType,
     payload: CreateCategoryPayload,
   ): Promise<CreateCategoryResponse> {
     const { data } = await axiosInstance.post<CreateCategoryResponse>(
-      '/ingredientCategories',
+      `/${type}Categories`,
       payload,
       {
         headers: {
@@ -41,16 +46,20 @@ class Categories {
     return data;
   }
 
-  async edit(id: string, payload: EditCategoryPayload): Promise<void> {
-    await axiosInstance.patch(`/ingredientCategories/${id}`, payload, {
+  async edit(
+    id: string,
+    type: CategoryType,
+    payload: EditCategoryPayload,
+  ): Promise<void> {
+    await axiosInstance.patch(`/${type}Categories/${id}`, payload, {
       headers: {
         Authorization: `Bearer ${this.getToken()}`,
       },
     });
   }
 
-  async remove(id: string): Promise<void> {
-    await axiosInstance.delete(`/ingredientCategories/${id}`, {
+  async remove(id: string, type: CategoryType): Promise<void> {
+    await axiosInstance.delete(`/${type}Categories/${id}`, {
       headers: {
         Authorization: `Bearer ${this.getToken()}`,
       },

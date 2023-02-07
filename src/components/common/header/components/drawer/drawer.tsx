@@ -58,7 +58,7 @@ const Drawer: FC = () => {
                 color="inherit"
                 startIcon={<LocalDining />}
                 LinkComponent={NavLink}
-                href={ROUTES.HOME}
+                href={ROUTES.RECIPES}
               >
                 Рецепти
               </Button>

@@ -9,7 +9,7 @@ import {
   FormWrapper,
 } from '@/components/common/form';
 import { useAppSelector } from '@/hooks';
-import { MeasureType } from '@/types/ingredients';
+import { MeasureType } from '@/types/common';
 import { CreateProductPayload, ModifyProductForm, Product } from '@/types/user';
 
 import { validationSchema } from './validation';

@@ -10,7 +10,7 @@ import { showToast } from '@/redux/reducers/toast.reducer';
 import { IngredientsService } from '@/services';
 import { TOAST_STATUS } from '@/types/redux/toast';
 
-import * as Styled from './remove-ingredient.styles';
+import * as Styled from './remove-ingredient.styled';
 
 interface RemoveIngredientProps {
   ingredientId: string;

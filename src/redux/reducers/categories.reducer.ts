@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { CategoryType } from '@/types/categories';
 import {
   AddCategoryAction,
   CategoriesStore,
@@ -9,7 +10,10 @@ import {
 } from '@/types/redux/categories';
 
 const initialState: CategoriesStore = {
-  categories: [],
+  categories: {
+    [CategoryType.INGREDIENT]: [],
+    [CategoryType.RECIPE]: [],
+  },
 };
 
 const categoriesSlice = createSlice({
@@ -17,15 +21,17 @@ const categoriesSlice = createSlice({
   initialState,
   reducers: {
     setCategories: (state, { payload }: PayloadAction<SetCategoriesAction>) => {
-      state.categories = payload.categories;
+      state.categories[payload.type] = payload.categories;
     },
     addCategory: (state, { payload }: PayloadAction<AddCategoryAction>) => {
-      state.categories.push(payload.category);
+      state.categories[payload.type].push(payload.category);
     },
     editCategory: (state, { payload }: PayloadAction<EditCategoryAction>) => {
-      const index = state.categories.findIndex(({ id }) => id === payload.id);
-      state.categories[index] = {
-        ...state.categories[index],
+      const index = state.categories[payload.type].findIndex(
+        ({ id }) => id === payload.id,
+      );
+      state.categories[payload.type][index] = {
+        ...state.categories[payload.type][index],
         ...payload.category,
       };
     },
@@ -33,7 +39,9 @@ const categoriesSlice = createSlice({
       state,
       { payload }: PayloadAction<RemoveCategoryAction>,
     ) => {
-      state.categories = state.categories.filter(({ id }) => id !== payload.id);
+      state.categories[payload.type] = state.categories[payload.type].filter(
+        ({ id }) => id !== payload.id,
+      );
     },
   },
 });

@@ -1,18 +1,5 @@
 import { Category } from '@/types/categories';
-
-export enum MeasureType {
-  KILOGRAMMS = 'KILOGRAMMS',
-  LITERS = 'LITERS',
-  GRAMMS = 'GRAMMS',
-  MILLILITERS = 'MILLILITERS',
-  PIECES = 'PIECES',
-  BUNCH = 'BUNCH',
-  TABLE_SPOON = 'TABLE_SPOON',
-  TEA_SPOON = 'TEA_SPOON',
-  CUP = 'CUP',
-  PINCH = 'PINCH',
-  CLOVE = 'CLOVE',
-}
+import { MeasureType } from '@/types/common';
 
 export const MeasureTypeMapper = {
   [MeasureType.KILOGRAMMS]: 'кг',

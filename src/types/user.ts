@@ -1,4 +1,5 @@
-import { Ingredient, MeasureType } from '@/types/ingredients';
+import { MeasureType } from '@/types/common';
+import { Ingredient } from '@/types/ingredients';
 import { Recipe } from '@/types/recipes';
 
 export interface Product {
