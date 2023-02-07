@@ -1,4 +1,8 @@
-import { GridIngredient, Ingredient } from '@/types/ingredients';
+import {
+  GridIngredient,
+  Ingredient,
+  MeasureTypeMapper,
+} from '@/types/ingredients';
 
 const transformData = (data: Ingredient[]): GridIngredient[] =>
   data.map((ingredient, index) => ({
@@ -6,7 +10,7 @@ const transformData = (data: Ingredient[]): GridIngredient[] =>
     index: index + 1,
     category: ingredient.category.name,
     name: ingredient.name,
-    standard: ingredient.standard,
+    standard: MeasureTypeMapper[ingredient.standard],
     ingredient: ingredient,
   }));
 

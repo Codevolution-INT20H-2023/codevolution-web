@@ -32,7 +32,7 @@ export interface GridProduct {
   index: number;
   name: string;
   category: string;
-  measure: MeasureType;
+  measure: string;
   amount: number;
   product: Product;
 }

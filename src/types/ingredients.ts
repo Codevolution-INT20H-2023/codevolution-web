@@ -14,6 +14,20 @@ export enum MeasureType {
   CLOVE = 'CLOVE',
 }
 
+export const MeasureTypeMapper = {
+  [MeasureType.KILOGRAMMS]: 'кг',
+  [MeasureType.LITERS]: 'л',
+  [MeasureType.GRAMMS]: 'г',
+  [MeasureType.MILLILITERS]: 'мл',
+  [MeasureType.PIECES]: 'шт',
+  [MeasureType.BUNCH]: 'пучок',
+  [MeasureType.TABLE_SPOON]: 'столова ложка',
+  [MeasureType.TEA_SPOON]: 'чайна ложка',
+  [MeasureType.CUP]: 'чашка',
+  [MeasureType.PINCH]: 'щіпка',
+  [MeasureType.CLOVE]: 'зубчик',
+};
+
 export interface Measure {
   measure: MeasureType;
   toStandard: number;
@@ -64,7 +78,7 @@ export interface GridIngredient {
   index: number;
   name: string;
   category: string;
-  standard: MeasureType;
+  standard: string;
   ingredient: Ingredient;
 }
 

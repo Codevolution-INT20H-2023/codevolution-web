@@ -1,3 +1,4 @@
+import { MeasureTypeMapper } from '@/types/ingredients';
 import { GridProduct, Product } from '@/types/user';
 
 const transformData = (data: Product[]): GridProduct[] =>
@@ -6,7 +7,7 @@ const transformData = (data: Product[]): GridProduct[] =>
     index: index + 1,
     name: product.ingredient.name,
     category: product.ingredient.category.name,
-    measure: product.ingredient.standard,
+    measure: MeasureTypeMapper[product.ingredient.standard],
     amount: product.amount,
     product: product,
   }));
