@@ -14,7 +14,7 @@ export const ModalContent = styled(Box)`
 `;
 
 export const Title = styled(Typography)`
-  font-weight: 600;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  font-weight: 600 !important;
+  font-size: 1.5rem !important;
+  margin-bottom: 1rem !important;
 `;

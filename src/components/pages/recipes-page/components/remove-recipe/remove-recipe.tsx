@@ -5,18 +5,18 @@ import { isAxiosError } from 'axios';
 
 import Button from '@/components/common/button';
 import Modal from '@/components/common/modal';
-import { removeIngredient } from '@/redux/reducers/ingredients.reducer';
+import { removeRecipe } from '@/redux/reducers/recipes.reducer';
 import { showToast } from '@/redux/reducers/toast.reducer';
-import { IngredientsService } from '@/services';
+import { RecipesService } from '@/services';
 import { TOAST_STATUS } from '@/types/redux/toast';
 
-import * as Styled from './remove-ingredient.styled';
+import * as Styled from './remove-recipe.styled';
 
-interface RemoveIngredientProps {
-  ingredientId: string;
+interface RemoveRecipeProps {
+  recipeId: string;
 }
 
-const RemoveIngredient: FC<RemoveIngredientProps> = ({ ingredientId }) => {
+const RemoveRecipe: FC<RemoveRecipeProps> = ({ recipeId }) => {
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -33,8 +33,8 @@ const RemoveIngredient: FC<RemoveIngredientProps> = ({ ingredientId }) => {
   const onDelete = useCallback(async () => {
     try {
       setIsLoading(true);
-      await IngredientsService.remove(ingredientId);
-      dispatch(removeIngredient({ id: ingredientId }));
+      await RecipesService.remove(recipeId);
+      dispatch(removeRecipe({ id: recipeId }));
       setOpen(false);
     } catch (e) {
       if (isAxiosError(e)) {
@@ -48,7 +48,7 @@ const RemoveIngredient: FC<RemoveIngredientProps> = ({ ingredientId }) => {
     } finally {
       setIsLoading(false);
     }
-  }, [dispatch, ingredientId]);
+  }, [dispatch, recipeId]);
 
   return (
     <>
@@ -61,7 +61,7 @@ const RemoveIngredient: FC<RemoveIngredientProps> = ({ ingredientId }) => {
       <Modal
         open={open}
         onClose={handleClose}
-        title="Ви дійсно хочете видалити інгредієнт?"
+        title="Ви дійсно хочете видалити рецепт?"
       >
         <Styled.ButtonsContainer>
           <Button text="Відміна" color="error" onClick={handleClose} />
@@ -77,4 +77,4 @@ const RemoveIngredient: FC<RemoveIngredientProps> = ({ ingredientId }) => {
   );
 };
 
-export default RemoveIngredient;
+export default RemoveRecipe;

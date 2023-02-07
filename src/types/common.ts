@@ -8,7 +8,7 @@ export enum ROUTES {
   SIGNUP = '/signup',
   REFRIGERATOR = '/refrigerator',
   INGREDIENTS = '/ingredients',
-  HOME = '/',
+  RECIPES = '/recipes',
 }
 
 export enum MeasureType {

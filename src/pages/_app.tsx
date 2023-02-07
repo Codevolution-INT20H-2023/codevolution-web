@@ -8,8 +8,13 @@ import Toast from '@/components/common/toast';
 import { wrapper } from '@/redux';
 import { setCategories } from '@/redux/reducers/categories.reducer';
 import { setIngredients } from '@/redux/reducers/ingredients.reducer';
+import { setAllRecipes } from '@/redux/reducers/recipes.reducer';
 import { showToast } from '@/redux/reducers/toast.reducer';
-import { CategoriesService, IngredientsService } from '@/services';
+import {
+  CategoriesService,
+  IngredientsService,
+  RecipesService,
+} from '@/services';
 import { CategoryType } from '@/types/categories';
 import { TOAST_STATUS } from '@/types/redux/toast';
 
@@ -22,6 +27,7 @@ function App({ Component, pageProps }: AppProps) {
 
   const loadData = useCallback(async () => {
     const { ingredients } = await IngredientsService.getAll();
+    const { recipes } = await RecipesService.getAll();
     const { categories: ingredientCategories } = await CategoriesService.getAll(
       CategoryType.INGREDIENT,
     );
@@ -41,6 +47,7 @@ function App({ Component, pageProps }: AppProps) {
         categories: recipeCategories,
       }),
     );
+    dispatch(setAllRecipes({ recipes }));
     try {
     } catch (e) {
       if (isAxiosError(e)) {

@@ -19,7 +19,11 @@ import { TOAST_STATUS } from '@/types/redux/toast';
 import { initialValues } from './constants';
 import { validationSchema } from './validation';
 
-const CreateCategory: FC = () => {
+interface CreateCategoryProps {
+  type: CategoryType;
+}
+
+const CreateCategory: FC<CreateCategoryProps> = ({ type }) => {
   const [open, setOpen] = useState(false);
 
   const dispatch = useDispatch();
@@ -35,11 +39,8 @@ const CreateCategory: FC = () => {
   const onSubmit = useCallback(
     async (data: CreateCategoryForm) => {
       try {
-        const category = await CategoriesService.create(
-          CategoryType.INGREDIENT,
-          data,
-        );
-        dispatch(addCategory({ category, type: CategoryType.INGREDIENT }));
+        const category = await CategoriesService.create(type, data);
+        dispatch(addCategory({ category, type }));
         setOpen(false);
       } catch (e) {
         if (isAxiosError(e)) {
@@ -52,7 +53,7 @@ const CreateCategory: FC = () => {
         }
       }
     },
-    [dispatch],
+    [dispatch, type],
   );
 
   return (
