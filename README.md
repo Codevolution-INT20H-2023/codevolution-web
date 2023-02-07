@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://i.imgur.com/X4dHh5o.png" width="500" alt="codevolution back-end logo" /></a>
+  <img src="https://i.imgur.com/B6NHzTc.png" width="500" alt="codevolution back-end logo" /></a>
 </p>
 
   <p align="center">Back-end service for the INT20H-2023 Test</p>
